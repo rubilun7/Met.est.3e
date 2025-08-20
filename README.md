@@ -14,3 +14,4 @@ Repositorio de métodos estadísticos del año 2025 de la carrera Ingeniería Fo
  + Crear versión control
  + Bases para uso eficiente en R
  + Modificación de readme
+ 
