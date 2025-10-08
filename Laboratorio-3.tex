@@ -1,0 +1,505 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Laboratorio-3.R},
+  pdfauthor={Usuario},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Laboratorio-3.R}
+\author{Usuario}
+\date{2025-08-21}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Parte 1: Importar datos}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\NormalTok{dbh }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{16.5}\NormalTok{, }\FloatTok{25.3}\NormalTok{, }\FloatTok{22.1}\NormalTok{, }\FloatTok{17.2}\NormalTok{, }\FloatTok{16.1}\NormalTok{, }\FloatTok{8.1}\NormalTok{, }\FloatTok{34.3}\NormalTok{,}
+         \FloatTok{5.4}\NormalTok{, }\FloatTok{5.7}\NormalTok{, }\FloatTok{11.2}\NormalTok{, }\FloatTok{24.1}\NormalTok{, }\FloatTok{14.5}\NormalTok{, }\FloatTok{7.7}\NormalTok{, }\FloatTok{15.6}\NormalTok{, }\FloatTok{15.9}\NormalTok{,}
+         \DecValTok{10}\NormalTok{, }\FloatTok{17.5}\NormalTok{, }\FloatTok{20.5}\NormalTok{, }\FloatTok{7.8}\NormalTok{, }\FloatTok{27.3}\NormalTok{, }\FloatTok{9.7}\NormalTok{, }\FloatTok{6.5}\NormalTok{, }\FloatTok{23.4}\NormalTok{,}
+         \FloatTok{8.2}\NormalTok{, }\FloatTok{28.5}\NormalTok{, }\FloatTok{10.4}\NormalTok{, }\FloatTok{11.5}\NormalTok{, }\FloatTok{14.3}\NormalTok{, }\FloatTok{17.2}\NormalTok{, }\FloatTok{16.8}\NormalTok{)}
+
+\NormalTok{url }\OtherTok{\textless{}{-}}\StringTok{"https://repodatos.atdt.gob.mx/api\_update/senasica/actividades\_inspeccion\_movilizacion/29\_actividades{-}inspeccion{-}movilizacion.csv"}
+\NormalTok{inspeccion }\OtherTok{\textless{}{-}}\FunctionTok{read.csv}\NormalTok{(url) }
+
+\FunctionTok{head}\NormalTok{(inspeccion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           pvif entidad_federativa     temporalidad  vci   vpi   vli   ci  cai
+## 1     Altamira         Tamaulipas Primer trimestre 1105 10875    41 1105  665
+## 2     Catazaja            Chiapas Primer trimestre 3743     0     0 3743    0
+## 3      Huixtla            Chiapas Primer trimestre 8930  7983 11317 8930 7743
+## 4   Trinitaria            Chiapas Primer trimestre 2464  2406  4438 2464 2121
+## 5 Cosamaloapan           Veracruz Primer trimestre 6733     0     0 6733    0
+## 6  El Tepetate         Nuevo León Primer trimestre 2643   325 12767 2643  974
+##    cpi oci crsr crsd
+## 1  440   0    4   11
+## 2 3743   0   40    0
+## 3 1076 111   10    8
+## 4  246  97    2    0
+## 5 6733   0   29    0
+## 6 1669   0   21    5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prof\_url\_2 }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"https://repodatos.atdt.gob.mx/api\_update/senasica/"}\NormalTok{,}
+                     \StringTok{"actividades\_inspeccion\_movilizacion/"}\NormalTok{,}
+                     \StringTok{"29\_actividades{-}inspeccion{-}movilizacion.csv"}\NormalTok{)}
+\NormalTok{senasica }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(prof\_url\_2)}
+\FunctionTok{head}\NormalTok{(senasica)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           pvif entidad_federativa     temporalidad  vci   vpi   vli   ci  cai
+## 1     Altamira         Tamaulipas Primer trimestre 1105 10875    41 1105  665
+## 2     Catazaja            Chiapas Primer trimestre 3743     0     0 3743    0
+## 3      Huixtla            Chiapas Primer trimestre 8930  7983 11317 8930 7743
+## 4   Trinitaria            Chiapas Primer trimestre 2464  2406  4438 2464 2121
+## 5 Cosamaloapan           Veracruz Primer trimestre 6733     0     0 6733    0
+## 6  El Tepetate         Nuevo León Primer trimestre 2643   325 12767 2643  974
+##    cpi oci crsr crsd
+## 1  440   0    4   11
+## 2 3743   0   40    0
+## 3 1076 111   10    8
+## 4  246  97    2    0
+## 5 6733   0   29    0
+## 6 1669   0   21    5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# No olvidar cargar la paquetería}
+\FunctionTok{library}\NormalTok{(repmis)}
+\NormalTok{conjunto }\OtherTok{\textless{}{-}} \FunctionTok{source\_data}\NormalTok{(}\StringTok{"https://www.dropbox.com/s/hmsf07bbayxv6m3/cuadro1.csv?dl=1"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Downloading data from: https://www.dropbox.com/s/hmsf07bbayxv6m3/cuadro1.csv?dl=1
+\end{verbatim}
+
+\begin{verbatim}
+## SHA-1 hash of the downloaded data file is:
+## 2bdde4663f51aa4198b04a248715d0d93498e7ba
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(conjunto) }\CommentTok{\# muestra las primeras seis filas de la BD}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Arbol Fecha Especie Clase Vecinos Diametro Altura
+## 1     1    12       F     C       4     15.3  14.78
+## 2     2    12       F     D       3     17.8  17.07
+## 3     3     9       C     D       5     18.2  18.28
+## 4     4     9       H     S       4      9.7   8.79
+## 5     5     7       H     I       6     10.8  10.18
+## 6     6    10       C     I       3     14.1  14.90
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(readr)}
+\NormalTok{file }\OtherTok{\textless{}{-}} \FunctionTok{paste0}\NormalTok{(}\StringTok{"https://raw.githubusercontent.com/mgtagle/"}\NormalTok{,}
+               \StringTok{"202\_Analisis\_Estadistico\_2020/master/cuadro1.csv"}\NormalTok{)}
+\NormalTok{inventario }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(file)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 50 Columns: 7
+\end{verbatim}
+
+\begin{verbatim}
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (2): Especie, Clase
+## dbl (5): Arbol, Fecha, Vecinos, Diametro, Altura
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(inventario)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 7
+##   Arbol Fecha Especie Clase Vecinos Diametro Altura
+##   <dbl> <dbl> <chr>   <chr>   <dbl>    <dbl>  <dbl>
+## 1     1    12 F       C           4     15.3  14.8 
+## 2     2    12 F       D           3     17.8  17.1 
+## 3     3     9 C       D           5     18.2  18.3 
+## 4     4     9 H       S           4      9.7   8.79
+## 5     5     7 H       I           6     10.8  10.2 
+## 6     6    10 C       I           3     14.1  14.9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Parte 2: Operaciones con la base de datos }
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\NormalTok{parcelas }\OtherTok{\textless{}{-}} \FunctionTok{gl}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+\NormalTok{parcelas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] 1 1 1 1 1 1 1 2 2 2 2 2 2 2 3 3 3 3 3 3 3
+## Levels: 1 2 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#se agrego una cifra de dbh para completar los 21 datos}
+\NormalTok{trees }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{21}\NormalTok{)}
+\NormalTok{dbh }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{16.5}\NormalTok{, }\FloatTok{25.3}\NormalTok{, }\FloatTok{22.1}\NormalTok{, }\FloatTok{17.2}\NormalTok{, }\FloatTok{16.1}\NormalTok{, }\FloatTok{8.1}\NormalTok{, }\FloatTok{34.3}\NormalTok{, }\FloatTok{5.4}\NormalTok{, }\FloatTok{5.7}\NormalTok{, }\FloatTok{11.2}\NormalTok{, }\FloatTok{9.7}\NormalTok{, }\FloatTok{6.5}\NormalTok{, }\FloatTok{23.4}\NormalTok{, }
+         \FloatTok{8.2}\NormalTok{, }\FloatTok{28.5}\NormalTok{, }\FloatTok{10.4}\NormalTok{, }\FloatTok{11.5}\NormalTok{, }\FloatTok{14.3}\NormalTok{, }\FloatTok{17.2}\NormalTok{, }\FloatTok{16.8}\NormalTok{,}\FloatTok{17.4}\NormalTok{)}
+
+\NormalTok{trees }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(trees,dbh,parcelas)}
+\FunctionTok{View}\NormalTok{(trees)}
+\NormalTok{trees}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    trees  dbh parcelas
+## 1      1 16.5        1
+## 2      2 25.3        1
+## 3      3 22.1        1
+## 4      4 17.2        1
+## 5      5 16.1        1
+## 6      6  8.1        1
+## 7      7 34.3        1
+## 8      8  5.4        2
+## 9      9  5.7        2
+## 10    10 11.2        2
+## 11    11  9.7        2
+## 12    12  6.5        2
+## 13    13 23.4        2
+## 14    14  8.2        2
+## 15    15 28.5        3
+## 16    16 10.4        3
+## 17    17 11.5        3
+## 18    18 14.3        3
+## 19    19 17.2        3
+## 20    20 16.8        3
+## 21    21 17.4        3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Agrega el vector dbh como nueva columna en el data frame trees}
+\NormalTok{trees}\SpecialCharTok{$}\NormalTok{dbh }\OtherTok{\textless{}{-}}\NormalTok{ dbh}
+
+\CommentTok{\# El signo de $ informa que necesitamos la columna dbh}
+\FunctionTok{mean}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.51429
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.808859
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Indica la sumatoria de los individuos en el objeto tree con un dbh \textless{} a 10}
+\FunctionTok{sum}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{dbh }\SpecialCharTok{\textless{}} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{which}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{dbh }\SpecialCharTok{\textless{}} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  6  8  9 11 12 14
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trees}\FloatTok{.13} \OtherTok{\textless{}{-}}\NormalTok{ trees[}\SpecialCharTok{!}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{parcela}\SpecialCharTok{==}\StringTok{"2"}\NormalTok{),]}
+\NormalTok{trees}\FloatTok{.13}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    trees  dbh parcelas
+## 1      1 16.5        1
+## 2      2 25.3        1
+## 3      3 22.1        1
+## 4      4 17.2        1
+## 5      5 16.1        1
+## 6      6  8.1        1
+## 7      7 34.3        1
+## 15    15 28.5        3
+## 16    16 10.4        3
+## 17    17 11.5        3
+## 18    18 14.3        3
+## 19    19 17.2        3
+## 20    20 16.8        3
+## 21    21 17.4        3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{trees}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(trees, dbh }\SpecialCharTok{\textless{}=} \DecValTok{10}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(trees}\FloatTok{.1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    trees dbh parcelas
+## 6      6 8.1        1
+## 8      8 5.4        2
+## 9      9 5.7        2
+## 11    11 9.7        2
+## 12    12 6.5        2
+## 14    14 8.2        2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(trees}\SpecialCharTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15.51429
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(trees}\FloatTok{.1}\SpecialCharTok{$}\NormalTok{dbh)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.266667
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+\CommentTok{\# Parte 3: Representación gráfica}
+\DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+
+\NormalTok{mamiferos }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"https://www.openintro.org/data/csv/mammals.csv"}\NormalTok{)}
+\FunctionTok{hist}\NormalTok{(mamiferos}\SpecialCharTok{$}\NormalTok{total\_sleep)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-1.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Histograma}
+\FunctionTok{hist}\NormalTok{(mamiferos}\SpecialCharTok{$}\NormalTok{total\_sleep, }\CommentTok{\# Datos}
+     \AttributeTok{xlim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{20}\NormalTok{), }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{14}\NormalTok{), }\CommentTok{\# Cambiar los límites de x \& y}
+     \AttributeTok{main =} \StringTok{"Total de horas sueño de las 39 especies"}\NormalTok{, }\CommentTok{\# Cambiar el título}
+     \AttributeTok{xlab =} \StringTok{"Horas sueño"}\NormalTok{, }\CommentTok{\# Cambiar eje de las x}
+     \AttributeTok{ylab =} \StringTok{"Frecuencia"}\NormalTok{, }\CommentTok{\# Cambiar eje de las y}
+     \AttributeTok{las =} \DecValTok{1}\NormalTok{, }\CommentTok{\# Cambiar orientación de y}
+     \AttributeTok{col =} \StringTok{"brown"}\NormalTok{) }\CommentTok{\# Cambiar color de las barras}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-2.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Barplot}
+\FunctionTok{data}\NormalTok{(}\StringTok{"chickwts"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(chickwts[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{,}\DecValTok{42}\SpecialCharTok{:}\DecValTok{43}\NormalTok{, }\DecValTok{62}\SpecialCharTok{:}\DecValTok{64}\NormalTok{), ])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    weight      feed
+## 1     179 horsebean
+## 2     160 horsebean
+## 42    226 sunflower
+## 43    320 sunflower
+## 62    379    casein
+## 63    260    casein
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{feeds }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(chickwts}\SpecialCharTok{$}\NormalTok{feed)}
+\NormalTok{feeds}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    casein horsebean   linseed  meatmeal   soybean sunflower 
+##        12        10        12        11        14        12
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(feeds)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-3.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(feeds, }\AttributeTok{col =}  \FunctionTok{c}\NormalTok{(}\StringTok{"brown"}\NormalTok{, }\StringTok{"cadetblue1"}\NormalTok{, }\StringTok{"darkseagreen"}\NormalTok{, }\StringTok{"coral"}\NormalTok{, }\StringTok{"darkslategray3"}\NormalTok{, }\StringTok{"lightskyblue1"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-4.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(feeds[}\FunctionTok{order}\NormalTok{(feeds, }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)], }\AttributeTok{col =}  \FunctionTok{c}\NormalTok{(}\StringTok{"brown"}\NormalTok{, }\StringTok{"cadetblue1"}\NormalTok{, }\StringTok{"darkseagreen"}\NormalTok{, }\StringTok{"coral"}\NormalTok{, }\StringTok{"darkslategray3"}\NormalTok{, }\StringTok{"lightskyblue1"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-5.pdf}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{barplot}\NormalTok{(feeds[}\FunctionTok{order}\NormalTok{(feeds)], }\AttributeTok{horiz =} \ConstantTok{TRUE}\NormalTok{, }
+        \AttributeTok{col =} \StringTok{"skyblue"}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Horas de sueño de las especies"}\NormalTok{, }
+        \AttributeTok{xlab =} \StringTok{"Número de horas"}\NormalTok{, }
+        \AttributeTok{las =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\pandocbounded{\includegraphics[keepaspectratio]{Laboratorio-3_files/figure-latex/unnamed-chunk-1-6.pdf}}
+
+\end{document}
